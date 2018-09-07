@@ -24,7 +24,6 @@
      $db_link->close();
 
      header('Location: index.php');
-
  }
 
  ?>

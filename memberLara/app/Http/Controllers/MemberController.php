@@ -29,7 +29,7 @@ class MemberController extends Controller
         $user = new User();
         $password = Hash::make($request['password']);
 
-//        $user->username = $request['username'];
+        $user->username = $request['username'];
         $user->password = $password;
         $user->name = $request['name'];
         $user->phone = $request['phone'];
