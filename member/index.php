@@ -3,8 +3,8 @@ include('connectMySQL.php');
 session_start();
 
 if (isset($_POST['username']) && $_POST['username'] != "" && $_POST['password'] != "") {
-    $input = $_POST['username'];
-    $getDataQuery = "SELECT * FROM nativeUsers WHERE username = '$input'";
+    $userName = $_POST['username'];
+    $getDataQuery = "SELECT * FROM nativeUsers WHERE username = '$userName'";
 
     if ($getDataQuery) {
         $result = mysqli_query($db_link, $getDataQuery);
@@ -17,6 +17,7 @@ if (isset($_POST['username']) && $_POST['username'] != "" && $_POST['password'] 
             $_SESSION['password'] = $user['password'];
             $_SESSION['name'] = $user['name'];
             $_SESSION['phone'] = $user['phone'];
+            session_save_path('~/sites');
            header('Location: welcome.php');
 
         } else {
@@ -24,6 +25,7 @@ if (isset($_POST['username']) && $_POST['username'] != "" && $_POST['password'] 
         }
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -84,12 +86,7 @@ if (isset($_POST['username']) && $_POST['username'] != "" && $_POST['password'] 
     <div class="content">
         <div class="title m-b-md">
             Welcome<br/>
-                <a href="create.php">
-                    <input style="font-size:20px" type="submit" name="button2" id="button2" value="註冊" />
-                </a>
         </div>
-
-        <div class="links">
             <form id="form1" name="form1" method="post" action="">
                 <table width="300" border="0" align="center" cellpadding="5" cellspacing="0" bgcolor="#F2F2F2">
                     <tr>
@@ -104,8 +101,8 @@ if (isset($_POST['username']) && $_POST['username'] != "" && $_POST['password'] 
                     <tr>
                         <td width="80" align="center" valign="baseline">密碼</td>
                         <?php
-                        if (isset($_SESSION['loginState']) && $_SESSION['loginState'] == 'wrongPassword') {
-                            echo '輸入錯誤';
+                        if (isset($_POST['username']) && isset($_SESSION['loginState']) && $_SESSION['loginState'] == 'wrongPassword') {
+                            echo '帳號、密碼輸入錯誤';
                         }
                         ?>
                         <td valign="baseline"><input type="password" name="password" id="password" /></td>
@@ -113,7 +110,8 @@ if (isset($_POST['username']) && $_POST['username'] != "" && $_POST['password'] 
                     <tr>
                         <td colspan="2" align="center" bgcolor="#CCCCCC">
                             <input style="font-size:20px" type="submit" name="button" id="button" value="登入" />
-
+                            <input style="font-size:20px" type = "button" onclick="location.href='create.php'" name="button2" id="button2" value="註冊" />
+                        </td>
                     </tr>
                 </table>
             </form>

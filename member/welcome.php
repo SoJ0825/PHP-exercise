@@ -9,12 +9,13 @@ if(isset($_POST['delete'])) {
     require ('connectMySQL.php');
     $deleteQuery = "DELETE FROM nativeUsers WHERE id = ".$_SESSION['id'];
     mysqli_query($db_link, $deleteQuery);
+    session_destroy();
     header('refresh:0;url=index.php');
 }
 
 if(! isset($_SESSION['name'])) {
-//    header('refresh:0;url = index.php');
     echo 'no session id';
+    header('Location: index.php');
 }
 
 ?>
@@ -25,7 +26,7 @@ if(! isset($_SESSION['name'])) {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>會員登入系統</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -69,16 +70,6 @@ if(! isset($_SESSION['name'])) {
                 font-size: 84px;
             }
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 16px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
             .m-b-md {
                 margin-bottom: 30px;
             }
@@ -92,18 +83,18 @@ if(! isset($_SESSION['name'])) {
                     Hello, <?php echo $_SESSION['name'] ?>
                 </div>
 
-                <div class="links">
+                <div>
                     <form name="logout" method="post" action="">
                         <input type="hidden" name="logout" id="logout" value="">
-                        <input type="submit" name="logout" value="登出">
+                        <input type="submit" name="logout"  style="width:120px;font-size:20px;" value="登出">
                     </form>
-                    <a href="update.php">修改資料</a>
+                    <input type="button" onclick="location.href='update.php'"  style="width:120px;font-size:20px;" value="修改資料" />
                     <form name="delete" method="post" action="">
                         <input type="hidden" name="delete" value="">
-                        <input type="submit" name="delete" value="刪除帳號">
+                        <input type="submit" name="delete"  style="width:120px;font-size:20px;" value="刪除帳號">
                     </form>
                     <?php if (isset($_SESSION['id']) && $_SESSION['id'] == '1') {
-                        echo '<a href="members.php">管理者</a>';
+                        echo "<input type=\"button\" onclick=\"location.href='members.php'\"  style=\"width:120px;font-size:20px;\" value=\"管理者\" />";
                     } ?>
                 </div>
             </div>

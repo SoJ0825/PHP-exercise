@@ -19,7 +19,6 @@ if (isset($_POST['currentPassword']) && $_POST['currentPassword'] != "" && passw
     } else {
         echo '密碼確認有誤';
         }
-    echo '??';
 }
 
 ?>

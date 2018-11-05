@@ -87,14 +87,14 @@ if (! (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['n
             會員註冊
         </div>
         <div class="links">
-            <form id="update" name="update" method="post" action="">
-                <table width="300" border="0" align="center" cellpadding="5" cellspacing="0" bgcolor="#F2F2F2">
-                    <tr>
-                        <div class="content">
-                        <td colspan="2" align="center" bgcolor="#CCCCCC"><font color="#000000">會員資料</font></td>
-                    </tr>
-                    <tr>
-                        <td width="80" align="center" valign="baseline">帳號</td>
+<form id="update" name="update" method="post" action="">
+    <table width="300" border="0" align="center" cellpadding="5" cellspacing="0" bgcolor="#F2F2F2">
+        <tr>
+            <div class="content">
+            <td colspan="2" align="center" bgcolor="#CCCCCC"><font color="#000000">會員資料</font></td>
+        </tr>
+        <tr>
+        <td width="80" align="center" valign="baseline">帳號</td>
                         <td valign="baseline">
                             <input type="text" name="username" id="username" value = ""></td>
                     </tr>
